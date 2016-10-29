@@ -12,8 +12,22 @@ fn fixed_xor(x: Vec<u8>, y: Vec<u8>) -> Vec<u8>{
     acc
 }
 
+fn fixed_xor_one_char(x: &Vec<u8>, y: u8) -> Vec<u8> {
+
+    let mut acc = Vec::new();
+    for xe in x.iter() {
+        acc.push(xe ^ y);
+    }
+
+    acc
+}
+
 fn main() {
-    let str1= "1c0111001f010100061a024b53535009181c".from_hex().unwrap();
-    let str2= "686974207468652062756c6c277320657965".from_hex().unwrap();
-    println!("{:?}", fixed_xor(str1, str2).to_hex());
+    let input = "1b37373331363f78151b7f2b783431333d78397828372d363c78373e783a393b3736".from_hex().unwrap();
+
+    for x in 0..255 {
+        println!("{}: {}",x, String::from_utf8_lossy(&fixed_xor_one_char(&input, x)));
+    }
+
+    println!("\n\n{}", String::from_utf8_lossy(&fixed_xor_one_char(&input, 88)));
 }
