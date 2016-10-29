@@ -1,5 +1,5 @@
 extern crate rustc_serialize;
-use rustc_serialize::hex::*;
+use rustc_serialize::hex::{ FromHex, ToHex };
 
 fn fixed_xor(x: Vec<u8>, y: Vec<u8>) -> Vec<u8>{
     assert_eq!(x.len(), y.len());
